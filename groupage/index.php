@@ -1,7 +1,9 @@
 <?php require_once '../database.php';
 
-$statement = $conn->prepare('SELECT * FROM cnc353_2.groupage AS groupage');
-$statement->execute();
+if (isset($conn)) {
+    $statement = $conn->prepare('SELECT * FROM cnc353_2.groupage AS groupage');
+    $statement->execute();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,34 +15,33 @@ $statement->execute();
 </head>
 <body>
 
-<?php echo "just did" ?>
 <table>
     <h1>List of Group Ages</h1>
     <a href="./create.php">Add a new Group Age</a>
     <thead>
-        <tr>
-            <td>gID</td>
-            <td>ageMax</td>
-            <td>ageMin</td>
-            <td>Actions</td>
-        </tr>
+    <tr>
+        <td>gID</td>
+        <td>ageMax</td>
+        <td>ageMin</td>
+        <td>Actions</td>
+    </tr>
     </thead>
     <tbody>
-        <?php while ($row =$statement->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT))?>
-            <tr>
-                <td><?= $row["gID"]?></td>
-                <td><?= $row["ageMax"]?></td>
-                <td><?= $row["ageMin"]?></td>
-                <td>
-                    <a href="./delete.php?gID=<?= $row["gID"]?>,?gID=<?= $row["gID"]?>">Delete</a>
-                    <a href="./edit.php?gID=<?= $row["gID"]?>,?gID=<?= $row["gID"]?>">Edit</a>
-                </td>
-                
-            </tr>
-        </php}>
+    <?php while ($row = $statement->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) { ?>
+        <tr>
+            <td><?= $row["gID"] ?></td>
+            <td><?= $row["ageMax"] ?></td>
+            <td><?= $row["ageMin"] ?></td>
+            <td>
+                <a href="./delete.php?gID=<?= $row["gID"] ?>,?gID=<?= $row["gID"] ?>">Delete</a>
+                <a href="./edit.php?gID=<?= $row["gID"] ?>,?gID=<?= $row["gID"] ?>">Edit</a>
+            </td>
+
+        </tr>
+    <?php } ?>
     </tbody>
 </table>
 <p>Choose the link to go back to the homepage</p>
-    <a href="../"> Back to homepage</a>
+<a href="../"> Back to homepage</a>
 </body>
 </html>
