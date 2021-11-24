@@ -1,7 +1,10 @@
 <?php require_once '../database.php';
 
-$statement = $conn->prepare('SELECT * FROM cnc353_2.publichealthworker AS PublicHealthWorker');
-$statement->execute();
+if (isset($conn)) {
+    $statement = $conn->prepare('SELECT * FROM cnc353_2.publichealthworker ');
+    $statement->execute();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +15,6 @@ $statement->execute();
     <title>Document</title>
 </head>
 <body>
-
-<?php echo "just did" ?>
 <table>
     <h1>List of publichealthworker</h1>
     <a href="./create.php">Add a new health worker</a>
@@ -22,26 +23,26 @@ $statement->execute();
             <td>facilityID</td>
             <td>personID</td>
             <td>employeeID</td>
-            <td>hourlyrate</td>
+            <td>hourlyRate</td>
             <td>jobType</td>
             <td>Actions</td>
         </tr>
     </thead>
     <tbody>
-        <?php while ($row =$statement->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT))?>
+    <?php while ($row =$statement->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT)){?>
             <tr>
                 <td><?= $row["facilityID"]?></td>
                 <td><?= $row["personID"]?></td>
                 <td><?= $row["employeeID"]?></td>
-                <td><?= $row["hourlyrate"]?></td>
+                <td><?= $row["hourlyRate"]?></td>
                 <td><?= $row["jobType"]?></td>
                 <td>
                     <a href="./delete.php?employeeID=<?= $row["employeeID"]?>,?facilityID=<?= $row["facilityID"]?>">Delete</a>
                     <a href="./edit.php?employeeID=<?= $row["employeeID"]?>,?facilityID=<?= $row["facilityID"]?>">Edit</a>
                 </td>
-                
+
             </tr>
-        </php}>
+        <?php } ?>
     </tbody>
 </table>
 <p>Choose the link to go back to the homepage</p>
