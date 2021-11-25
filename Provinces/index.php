@@ -1,7 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT * FROM cnc353_2.province AS provinces');
+    $statement = $conn->prepare('SELECT * FROM cnc353_2.province ');
     $statement->execute();
 }
 ?>
@@ -26,17 +26,19 @@ if (isset($conn)) {
     </tr>
     </thead>
     <tbody>
-    <?php while ($row = $statement->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) { ?>
-        <tr>
-            <td><?= $row["province"] ?></td>
-            <td><?= $row["ageGroupID"] ?></td>
-            <td>
-                <a href="./delete.php?province=<?= $row["province"] ?>,?province=<?= $row["province"] ?>">Delete</a>
-                <a href="./edit.php?province=<?= $row["province"] ?>,?province=<?= $row["province"] ?>">Edit</a>
-            </td>
+    <?php if (isset($statement)) {
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) { ?>
+            <tr>
+                <td><?= $row["province"] ?></td>
+                <td><?= $row["ageGroupID"] ?></td>
+                <td>
+                    <a href="./delete.php?province=<?= $row["province"] ?>">Delete</a>
+                    <a href="./edit.php?province=<?= $row["province"] ?>">Edit</a>
+                </td>
 
-        </tr>
-    <?php } ?>
+            </tr>
+        <?php }
+    } ?>
     </tbody>
 </table>
 <p>Choose the link to go back to the homepage</p>

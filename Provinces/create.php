@@ -1,23 +1,3 @@
-<?php require_once '../database.php';
-
-if(isset($_POST['province'])
-    &&isset($_POST['AgeGroupID'])){
-        
-    $provinces = $conn->prepare("INSERT INTO cnc353_2.provinces (province, AgeGroupID, ageMin)
-    VALUES (:province, :AgeGroupID, :ageMin;");
-
-    $provinces->bindParam(":province",$_POST["province"]);
-    
-    $provinces->bindParam(":AgeGroupID",$_POST["AgeGroupID"]);
-      
-    $provinces->execute();
-
-    if($provinces->execute())
-        header("Location: .");
-    
-
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,13 +7,20 @@ if(isset($_POST['province'])
     <title>Create a provinces</title>
 </head>
 <body>
-    <form action="./create.php" method="post">
-        <label for="province"></label>province<br>
-        <input type="text" name="province" id="province"><br>
-        
-        <label for="AgeGroupID"></label>AgeGroupID<br>
-        <input type="number" name="AgeGroupID" id="AgeGroupID"><br>
-        
-    </form>
+<form action="./create-query.php" method="post">
+    <label for="province"></label>province<br>
+    <input type="text" name="province" id="province"><br>
+
+    <label for="ageGroupID"></label>AgeGroupID<br>
+    <input type="number" name="ageGroupID" id="ageGroupID"><br>
+
+    <button type="submit">Create</button>
+    <?php
+    if (isset($_SESSION["errorMSG"])) {
+        echo $_SESSION["errorMSG"];
+        unset($_SESSION["errorMSG"]);
+    }
+    ?>
+</form>
 </body>
 </html>
