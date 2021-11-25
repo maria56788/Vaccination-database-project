@@ -9,8 +9,9 @@
 <body>
     <h1>Welcome</h1>
     <p>Choose one of the following links to connect to</p>
-    <a href="./publichealthworker/">publichealthworker</a>
-    <a href="./person/">person</a>
+    <a href="./publichealthworker/">Public Health Worker</a>
+    <a href="./person/">Person</a>
+    <a href="./booking/">Booking</a>
 
 
     
