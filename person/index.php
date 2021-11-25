@@ -11,6 +11,8 @@ if (isset($conn)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -54,8 +56,8 @@ if (isset($conn)) {
             <td><?= $row["groupAgeID"] ?></td>
 
             <td>
-                <a href="./delete.php?employeeID=<?= $row["employeeID"] ?>,?facilityID=<?= $row["facilityID"] ?>">Delete</a>
-                <a href="./edit.php?employeeID=<?= $row["employeeID"] ?>,?facilityID=<?= $row["facilityID"] ?>">Edit</a>
+                <a href="./delete.php?pID=<?= $row["pID"] ?>">Delete</a>
+                <a href="./edit.php?pID=<?= $row["pID"] ?>">Edit</a>
             </td>
 
         </tr>
