@@ -1,55 +1,4 @@
 <?php require_once '../database.php';
-
-if(isset($_POST['pID'])
-      &&isset($_POST['firstName'])
-      &&isset($_POST['middleName'])
-      &&isset($_POST['lastName'])
-      &&isset($_POST['phone'])
-      &&isset($_POST['citizenship'])
-      &&isset($_POST['postalCode'])
-      &&isset($_POST['email'])
-      &&isset($_POST['city'])
-      &&isset($_POST['address'])
-      &&isset($_POST['DoB'])
-      &&isset($_POST['province'])
-      &&isset($_POST['groupAgeID'])){
-        
-    $person = $conn->prepare("INSERT INTO cnc353_2.person (pID, firstName, middleName, lastName, phone, citizenship, postalCode, email, city, address, DoB, province, groupAgeID)
-    VALUES (:pID, :firstName, :middleName, :lastName, :phone, :citizenship, :postalCode, :email, :city, :address, :DoB, :province, :groupAgeID;");
-
-    $person->bindParam(":pID",$_POST["pID"]);
-    
-    $person->bindParam(":firstName",$_POST["firstName"]);
-    
-    $person->bindParam(":middleName",$_POST["middleName"]);
-    
-    $person->bindParam(":lastName",$_POST["lastName"]);
-    
-    $person->bindParam(":phone",$_POST["phone"]);
-
-    $person->bindParam(":citizenship",$_POST["citizenship"]);
-
-    $person->bindParam(":postalCode",$_POST["postalCode"]);
-
-    $person->bindParam(":email",$_POST["email"]);
-
-    $person->bindParam(":city",$_POST["city"]);
-
-    $person->bindParam(":address",$_POST["address"]);
-
-    $person->bindParam(":DoB",$_POST["DoB"]);
-
-    $person->bindParam(":province",$_POST["province"]);
-
-    $person->bindParam(":groupAgeID",$_POST["groupAgeID"]);
-
-    $person->execute();
-
-    if($person->execute())
-        header("Location: .");
-    
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,51 +6,57 @@ if(isset($_POST['pID'])
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Create a Person</title>
 </head>
 <body>
-<form action="./create.php" method="post">
-        <label for="pID"></label>pID<br>
-        <input type="number" name="pID" id="pID" value="<?= $person["pID"]?>"><br>
-        
+<form action="./create-query.php" method="post">
+
         <label for="firstName"></label>firstName<br>
-        <input type="text" name="firstName" id="firstName"value="<?= $person["firstName"]?>"><br>
+        <input type="text" name="firstName" id="firstName" value=""><br>
 
         <label for="middleName"></label>middleName<br>
-        <input type="text" name="middleName" id="middleName"value="<?= $person["middleName"]?>"><br>
+        <input type="text" name="middleName" id="middleName" value=""><br>
         
         <label for="lastName"></label>lastName<br>
-        <input type="text" name="lastName" id="lastName"value="<?= $person["lastName"]?>"><br>
+        <input type="text" name="lastName" id="lastName" value=""><br>
 
         <label for="phone"></label>phone<br>
-        <input type="number" name="phone" id="phone"value="<?= $person["phone"]?>"><br>
+        <input type="number" name="phone" id="phone" value=""><br>
 
         <label for="citizenship"></label>citizenship<br>
-        <input type="text" name="citizenship" id="citizenship"value="<?= $person["citizenship"]?>"><br>
+        <input type="text" name="citizenship" id="citizenship" value=""><br>
 
         <label for="postalCode"></label>postalCode<br>
-        <input type="text" name="postalCode" id="postalCode"value="<?= $person["postalCode"]?>"><br>
+        <input type="text" name="postalCode" id="postalCode" value=""><br>
 
         <label for="email"></label>email<br>
-        <input type="text" name="email" id="email"value="<?= $person["email"]?>"><br>
+        <input type="email" name="email" id="email" value=""><br>
 
         <label for="city"></label>city<br>
-        <input type="text" name="city" id="city"value="<?= $person["city"]?>"><br>
+        <input type="text" name="city" id="city" value=""><br>
 
         <label for="address"></label>address<br>
-        <input type="text" name="address" id="address"value="<?= $person["address"]?>"><br>
+        <input type="text" name="address" id="address" value=""><br>
 
         <label for="DoB"></label>DoB<br>
-        <input type="number" name="DoB" id="DoB"value="<?= $person["DoB"]?>"><br>
+        <input type="date" name="DoB" id="DoB" value=""><br>
 
         <label for="province"></label>province<br>
-        <input type="text" name="province" id="province"value="<?= $person["province"]?>"><br>
+        <input type="text" name="province" id="province" value=""><br>
 
         <label for="groupAgeID"></label>groupAgeID<br>
-        <input type="number" name="groupAgeID" id="groupAgeID"value="<?= $person["groupAgeID"]?>"><br>
+        <input type="number" name="groupAgeID" id="groupAgeID" value=""><br>
 
-        <button type="submit">Update</button>
+        <button type="submit">Create</button>
        
     </form>
+<?php
+if (isset($_SESSION["errorMSG"])) {
+    echo $_SESSION["errorMSG"];
+    unset($_SESSION["errorMSG"]);
+}
+?>
 </body>
 </html>
