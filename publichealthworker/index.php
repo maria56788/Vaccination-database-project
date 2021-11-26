@@ -28,7 +28,9 @@ $statement->execute();
             <td>employeeID</td>
             <td>hourlyRate</td>
             <td>jobType</td>
+            <td>SSN</td>
             <td>Actions</td>
+
         </tr>
     </thead>
     <tbody>
@@ -39,10 +41,11 @@ $statement->execute();
                 <td><?= $row["employeeID"]?></td>
                 <td><?= $row["hourlyRate"]?></td>
                 <td><?= $row["jobType"]?></td>
+                <td><?= $row["SSN"]?></td>
                 
                 <td>
-                    <a href="./delete.php?employeeID=<?= $row["employeeID"]?>,?facilityID=<?= $row["facilityID"]?>">Delete</a>
-                    <a href="./edit.php?employeeID=<?= $row["employeeID"]?>,?facilityID=<?= $row["facilityID"]?>">Edit</a>
+                    <a href="./delete.php?employeeID=<?= $row["employeeID"]?>&facilityID=<?= $row["facilityID"]?>">Delete</a>
+                    <a href="./edit.php?employeeID=<?= $row["employeeID"]?>&facilityID=<?= $row["facilityID"]?>">Edit</a>
                 </td>
                 
                 </tr>

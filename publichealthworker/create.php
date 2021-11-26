@@ -1,31 +1,5 @@
 <?php require_once '../database.php';
 
-if(isset($_POST['facilityID'])
-    &&isset($_POST['personID'])
-    &&isset($_POST['employeeID'])
-    &&isset($_POST['hourlyrate'])
-    &&isset($_POST['jobType'])){
-        
-    $publichealthworker = $conn->prepare("INSERT INTO cnc353_2.publichealthworker (facilityID, personID, employeeID, hourlyrate, jobType)
-    VALUES (:facilityID, :personID, :employeeID, :hourlyrate, :jobType;");
-
-    $publichealthworker->bindParam(":facilityID",$_POST["facilityID"]);
-    
-    $publichealthworker->bindParam(":personID",$_POST["personID"]);
-    
-    $publichealthworker->bindParam(":employeeID",$_POST["employeeID"]);
-    
-    $publichealthworker->bindParam(":hourlyrate",$_POST["hourlyrate"]);
-    
-    $publichealthworker->bindParam(":jobType",$_POST["jobType"]);
-
-    $publichealthworker->execute();
-
-    if($publichealthworker->execute())
-        header("Location: .");
-    
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +10,7 @@ if(isset($_POST['facilityID'])
     <title>Create a publichealthworker</title>
 </head>
 <body>
-    <form action="./create.php" method="post">
+    <form action="./create-query.php" method="post">
         <label for="facilityID"></label>facilityID<br>
         <input type="number" name="facilityID" id="facilityID"><br>
         
@@ -46,13 +20,23 @@ if(isset($_POST['facilityID'])
         <label for="employeeID"></label>employeeID<br>
         <input type="number" name="employeeID" id="employeeID"><br>
         
-        <label for="hourlyrate"></label>hourlyrate<br>
-        <input type="number" name="hourlyrate" id="hourlyrate"><br>
+        <label for="hourlyRate"></label>hourlyRate<br>
+        <input type="number" name="hourlyRate" id="hourlyRate"><br>
 
         <label for="jobType"></label>jobType<br>
         <input type="text" name="jobType" id="jobType"><br>
-        
-       
+
+        <label for="SSN">SSN</label><br>
+        <input type="text" name="SSN" id="SSN"><br>
+
+        <button type="submit">Create</button>
+
     </form>
+    <?php
+    if (isset($_SESSION["errorMSG"])) {
+        echo $_SESSION["errorMSG"];
+        unset($_SESSION["errorMSG"]);
+    }
+    ?>
 </body>
 </html>
