@@ -18,7 +18,7 @@ if (isset($conn)) {
 <body>
 
 <table>
-    <h1>List of person</h1>
+    <h1>List of persons</h1>
     <a href="./create.php">Add a new person</a>
     <thead>
     <tr>
