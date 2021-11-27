@@ -11,6 +11,8 @@ if (isset($conn)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -37,8 +39,8 @@ if (isset($conn)) {
             <td><?= $row["vStatus"] ?></td>
             <td><?= $row["suspendedDate"] ?></td>
             <td>
-                <a href="./delete.php?vaccineType=<?= $row["vaccineType"] ?>,?vaccineType=<?= $row["vaccineType"] ?>">Delete</a>
-                <a href="./edit.php?vaccineType=<?= $row["vaccineType"] ?>,?vaccineType=<?= $row["vaccineType"] ?>">Edit</a>
+                <a href="./delete.php?vaccineType=<?= $row["vaccineType"] ?>">Delete</a>
+                <a href="./edit.php?vaccineType=<?= $row["vaccineType"] ?>">Edit</a>
             </td>
 
         </tr>

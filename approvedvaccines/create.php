@@ -1,31 +1,5 @@
 <?php require_once '../database.php';
 
-if(isset($_POST['vaccineType'])
-    &&isset($_POST['dateOfApproval'])
-    &&isset($_POST['vDesc'])
-    &&isset($_POST['vStatus'])
-    &&isset($_POST['suspendedDate'])){
-        
-    $approvedvaccines = $conn->prepare("INSERT INTO cnc353_2.approvedvaccines (vaccineType, dateOfApproval, vDesc, vStatus, suspendedDate)
-    VALUES (:vaccineType, :dateOfApproval, :vDesc, :vStatus, :suspendedDate;");
-
-    $approvedvaccines->bindParam(":vaccineType",$_POST["vaccineType"]);
-    
-    $approvedvaccines->bindParam(":dateOfApproval",$_POST["dateOfApproval"]);
-    
-    $approvedvaccines->bindParam(":vDesc",$_POST["vDesc"]);
-    
-    $approvedvaccines->bindParam(":vStatus",$_POST["vStatus"]);
-    
-    $approvedvaccines->bindParam(":suspendedDate",$_POST["suspendedDate"]);
-
-    $approvedvaccines->execute();
-
-    if($approvedvaccines->execute())
-        header("Location: .");
-    
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +10,12 @@ if(isset($_POST['vaccineType'])
     <title>Create a approvedvaccines</title>
 </head>
 <body>
-    <form action="./create.php" method="post">
+    <form action="./create-query.php" method="post">
         <label for="vaccineType"></label>vaccineType<br>
         <input type="text" name="vaccineType" id="vaccineType"><br>
         
         <label for="dateOfApproval"></label>dateOfApproval<br>
-        <input type="number" name="dateOfApproval" id="dateOfApproval"><br>
+        <input type="date" name="dateOfApproval" id="dateOfApproval"><br>
 
         <label for="vDesc"></label>vDesc<br>
         <input type="text" name="vDesc" id="vDesc"><br>
@@ -50,9 +24,9 @@ if(isset($_POST['vaccineType'])
         <input type="text" name="vStatus" id="vStatus"><br>
 
         <label for="suspendedDate"></label>suspendedDate<br>
-        <input type="text" name="suspendedDate" id="suspendedDate"><br>
+        <input type="date" name="suspendedDate" id="suspendedDate"><br>
         
-       
+       <button>Submit</button>
     </form>
 </body>
 </html>
