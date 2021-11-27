@@ -25,7 +25,7 @@ $province = $statement->fetch(PDO::FETCH_ASSOC);
 <body>
 <form action="./edit-query.php" method="post">
     <label for="province"></label>province<br>
-    <input type="text" name="province" id="province" value="<?= $province["province"] ?>"><br>
+    <input type="text" name="province" id="province" value="<?= $province["province"] ?>" readonly><br>
 
     <label for="ageGroupID"></label>AgeGroupID<br>
     <input type="number" name="ageGroupID" id="ageGroupID" value="<?= $province["ageGroupID"] ?>"><br>
