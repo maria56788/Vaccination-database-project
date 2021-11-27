@@ -1,9 +1,9 @@
 <?php require_once '../database.php';
-
-$statement = $conn->prepare("SELECT*cnc353_2.approvedvaccines AS approvedvaccines 
-WHERE approvedvaccines.vaccineType = :vaccineType AND approvedvaccines.vDesc = :vDesc");
-
-$statement->bindParam(":vDesc",$_GET["vDesc"]);
+if (!isset($_GET["pID"])){
+    header("Location: index.php");
+}
+$statement = $conn->prepare("SELECT * FROM cnc353_2.approvedvaccines AS approvedvaccines 
+WHERE approvedvaccines.vaccineType = :vaccineType");
 
 $statement->bindParam(":vaccineType",$_GET["vaccineType"]);
 
@@ -11,40 +11,6 @@ $statement->execute();
 
 $approvedvaccines = $statement->fetch(PDO::FETCH_ASSOC);
 
-if(isset($_POST['vaccineType'])
-        &&isset($_POST['dateOfApproval'])
-        &&isset($_POST['vDesc'])
-        &&isset($_POST['vStatus'])
-        &&isset($_POST['suspendedDate'])){
-        $statement = $conn->prepare("UPDATE cnc353_2.approvedvaccines
-                                     SET vaccineType =:vaccineType, 
-                                         dateOfApproval = :dateOfApproval, 
-                                         vDesc =:vDesc, 
-                                         vStatus =:vStatus, 
-                                         suspendedDate =:suspendedDate");
-
-    $statement->bindParam(":vaccineType",$_POST["vaccineType"]);
-    
-    $statement->bindParam(":dateOfApproval",$_POST["dateOfApproval"]);
-    
-    $statement->bindParam(":vDesc",$_POST["vDesc"]);
-    
-    $statement->bindParam(":vStatus",$_POST["vStatus"]);
-    
-    $statement->bindParam(":suspendedDate",$_POST["suspendedDate"]);
-
-    $statement->execute();
-
-    if($statement->execute())
-        header("Location: .");
-    
-/*
-in the example he gave, used book id to keep track of which book is updated.
-problem is that for approvedvaccines the key is made of vDesc and vaccineType.
-
-throughout the code he uses that book id. Should we use approvedvaccines ID?
-*/
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,5 +40,11 @@ throughout the code he uses that book id. Should we use approvedvaccines ID?
         <button type="submit">Update</button>
        
     </form>
+<?php
+if (isset($_SESSION["errorMSG"])) {
+     echo $_SESSION["errorMSG"];
+     unset($_SESSION["errorMSG"]);
+}
+    ?>
 </body>
 </html>

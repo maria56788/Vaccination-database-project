@@ -37,8 +37,8 @@ if (isset($conn)) {
             <td><?= $row["vStatus"] ?></td>
             <td><?= $row["suspendedDate"] ?></td>
             <td>
-                <a href="./delete.php?vaccineType=<?= $row["vaccineType"] ?>,?vaccineType=<?= $row["vaccineType"] ?>">Delete</a>
-                <a href="./edit.php?vaccineType=<?= $row["vaccineType"] ?>,?vaccineType=<?= $row["vaccineType"] ?>">Edit</a>
+                <a href="./delete.php?vaccineType=<?= $row["vaccineType"]?>">Delete</a>
+                <a href="./edit.php?vaccineType=<?= $row["vaccineType"] ?>">Edit</a>
             </td>
 
         </tr>
