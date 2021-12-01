@@ -4,13 +4,17 @@ require_once "../database.php";
 try {
 $statement = $conn->query("SELECT person.firstName ,person.middleName, person.lastName, person.phone, totalTable.totalGiven
 FROM
-(SELECT p.personID idNurse, COUNT(vic.vaccinationID) AS totalGiven
+(SELECT p.personID idNurse, COUNT(vic.vaccinationID) AS totalGiven, p.exist p_exist, vic.exist vic_exist
 FROM publichealthworker p
 INNER JOIN vaccination_inside_country vic on p.employeeID = vic.nurseID
 GROUP BY idNurse
 HAVING totalGiven > 1
-ORDER BY totalGiven DESC) AS totalTable
-INNER JOIN person ON person.pID = idNurse");
+) AS totalTable
+INNER JOIN person ON person.pID = idNurse
+WHERE totalTable.p_exist = 1
+AND totalTable.vic_exist = 1 
+AND person.exist = 1 
+ORDER BY totalGiven DESC");
 
 }catch (PDOException $e) {
     $_SESSION['errorMSG'] = 'Generic Error Message';

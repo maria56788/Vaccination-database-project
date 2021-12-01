@@ -2,7 +2,7 @@
 require_once "../database.php";
 try {
     $persons = $conn->prepare('SELECT pID, firstName, middleName, lastName, DOB From cnc353_2.person
-        WHERE firstName = :firstName AND middleName = :middleName AND lastName = :lastName');
+        WHERE firstName = :firstName AND middleName = :middleName AND lastName = :lastName AND person.exist = 1');
     $persons->bindParam(":firstName", $_POST["firstName"]);
     if (!empty($_POST[":middleName"])) {
         $persons->bindParam(":middleName", $_POST["middleName"]);
@@ -14,13 +14,18 @@ try {
     $persons->bindParam(":lastName", $_POST["lastName"]);
     $persons->execute();
     $person = $persons->fetch();
+
+    if ($persons->fetchColumn() != 1){
+        throw new PDOException();
+    }
+
     $pID = $person["pID"];
 
     $bookings = $conn->prepare('SELECT booking.personID, booking.dayBooked, timeslot.startTime, vaccinationfacility.fName , vaccinationfacility.address, vaccinationfacility.city, vaccinationfacility.province, vaccinationfacility.postalCode
 FROM ((booking
 INNER JOIN timeslot on booking.timeID = timeslot.tID)
 INNER JOIN vaccinationfacility on booking.facilityID = vaccinationfacility.fID)
-WHERE booking.personID = :personID');
+WHERE booking.personID = :personID AND vaccinationfacility.exist = 1');
     $bookings->bindParam(":personID", $pID);
     $bookings->execute();
 
@@ -33,13 +38,17 @@ LEFT JOIN vaccination_inside_country vic on vaccination.vID = vic.vaccinationID
 LEFT JOIN vaccination_outside_country voc on vaccination.vID = voc.vaccinationID
 LEFT JOIN vaccinationfacility v on vic.facilityID = v.fID
 WHERE vaccination.pID = :personID
+AND a.exist = 1
+AND vaccination.exist = 1
+AND v.exist = 1
 ORDER BY doseNumber asc');
     $vaccines->bindParam(":personID", $pID);
     $vaccines->execute();
 
     $infections = $conn->prepare("SELECT infection.infectedDate
 FROM infection
-WHERE infection.pID = :personID");
+WHERE infection.pID = :personID
+AND infection.exist = 1");
     $infections->bindParam(":personID", $pID);
     $infections->execute();
 

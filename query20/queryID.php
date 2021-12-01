@@ -2,16 +2,20 @@
 require_once "../database.php";
 try {
     $persons = $conn->prepare('SELECT pID, firstName, middleName, lastName, DOB From cnc353_2.person
-        WHERE pID = :personID');
+        WHERE pID = :personID AND person.exist = 1');
     $persons->bindParam(":personID", $_POST["personID"]);
     $persons->execute();
+    if ($persons->fetchColumn() != 1){
+        throw new PDOException();
+    }
     $person = $persons->fetch();
 
     $bookings = $conn->prepare('SELECT booking.personID, booking.dayBooked, timeslot.startTime, vaccinationfacility.fName , vaccinationfacility.address, vaccinationfacility.city, vaccinationfacility.province, vaccinationfacility.postalCode
 FROM ((booking
 INNER JOIN timeslot on booking.timeID = timeslot.tID)
 INNER JOIN vaccinationfacility on booking.facilityID = vaccinationfacility.fID)
-WHERE booking.personID = :personID');
+WHERE booking.personID = :personID
+AND vaccinationfacility.exist = 1');
     $bookings->bindParam(":personID", $_POST["personID"]);
     $bookings->execute();
 
@@ -24,13 +28,16 @@ LEFT JOIN vaccination_inside_country vic on vaccination.vID = vic.vaccinationID
 LEFT JOIN vaccination_outside_country voc on vaccination.vID = voc.vaccinationID
 LEFT JOIN vaccinationfacility v on vic.facilityID = v.fID
 WHERE vaccination.pID = :personID
+AND vaccination.exist = 1
+AND v.exist = 1
 ORDER BY doseNumber asc');
     $vaccines->bindParam(":personID", $_POST["personID"]);
     $vaccines->execute();
 
     $infections = $conn->prepare("SELECT infection.infectedDate
 FROM infection
-WHERE infection.pID = :personID");
+WHERE infection.pID = :personID
+AND infection.exist = 1");
     $infections->bindParam(":personID", $_POST["personID"]);
     $infections->execute();
 

@@ -21,6 +21,9 @@ FROM
 
 WHERE
    vaccinationfacility.city = 'Montreal'
+AND vaccinationfacility.exist = 1
+AND p.exist = 1
+AND vic.exist = 1
 GROUP BY vaccinationfacility.fname
 ORDER BY FacilityTotalDoses ASC
 ");
