@@ -2,7 +2,7 @@
 require_once '../database.php';
 try {
 
-    $person = $conn->prepare("INSERT INTO cnc353_2.person (pID, firstName, middleName, lastName, phone, citizenship, postalCode, email, city, address, DoB, province, groupAgeID)
+    $person = $conn->prepare("INSERT INTO person (pID, firstName, middleName, lastName, phone, citizenship, postalCode, email, city, address, DoB, province, groupAgeID)
     VALUES (:pID, :firstName, :middleName, :lastName, :phone, :citizenship, :postalCode, :email, :city, :address, :DoB, :province, :groupAgeID)");
 
     $person->bindParam(":pID",$_POST["pID"]);

@@ -2,7 +2,7 @@
 if (!isset($_GET["gID"])){
     header("Location: index.php");
 }
-$statement = $conn->prepare("SELECT * FROM cnc353_2.groupage AS groupage 
+$statement = $conn->prepare("SELECT * FROM groupage AS groupage 
 WHERE groupage.gID = :gID");
 
 $statement->bindParam(":gID",$_GET["gID"]);

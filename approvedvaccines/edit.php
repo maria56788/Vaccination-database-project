@@ -2,7 +2,7 @@
 if (!isset($_GET["pID"])){
     header("Location: index.php");
 }
-$statement = $conn->prepare("SELECT * FROM cnc353_2.approvedvaccines AS approvedvaccines 
+$statement = $conn->prepare("SELECT * FROM approvedvaccines AS approvedvaccines 
 WHERE approvedvaccines.vaccineType = :vaccineType");
 
 $statement->bindParam(":vaccineType",$_GET["vaccineType"]);

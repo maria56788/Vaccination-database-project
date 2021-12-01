@@ -2,7 +2,7 @@
 if (!isset($_GET["employeeID"])&&!isset($_GET["facilityID"])){
     header("Location: index.php");
 }
-$statement = $conn->prepare("SELECT * FROM cnc353_2.publichealthworker WHERE facilityID = :facilityID AND employeeID = :employeeID");
+$statement = $conn->prepare("SELECT * FROM publichealthworker WHERE facilityID = :facilityID AND employeeID = :employeeID");
 
 $statement->bindParam(":employeeID",$_GET["employeeID"]);
 

@@ -1,7 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-$statement = $conn->query('SELECT * FROM cnc353_2.publichealthworker AS PublicHealthWorker WHERE exist = 1');
+$statement = $conn->query('SELECT * FROM publichealthworker AS PublicHealthWorker WHERE exist = 1');
 }
 ?>
 <!DOCTYPE html>

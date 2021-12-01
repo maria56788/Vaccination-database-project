@@ -3,7 +3,7 @@
 require_once "../database.php";
 
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.province SET exist = 0 WHERE cnc353_2.province.province = :province");
+    $statement = $conn->prepare("UPDATE province SET exist = 0 WHERE cnc353_2.province.province = :province");
 
     $statement->bindParam(":province", $_GET["province"]);
 

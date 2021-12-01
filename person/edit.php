@@ -3,7 +3,7 @@ if (!isset($_GET["pID"])) {
     header("Location: index.php");
 }
 
-$mcnCheck = $conn->prepare("Select personID From cnc353_2.person_with_mcn WHERE personID = :pID");
+$mcnCheck = $conn->prepare("Select personID From person_with_mcn WHERE personID = :pID");
 $mcnCheck->bindParam(":pID", $_GET["pID"]);
 $mcnCheck->execute();
 

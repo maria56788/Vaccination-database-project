@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.groupage
+    $statement = $conn->prepare("UPDATE groupage
                                      SET  
                                          ageMax = :ageMax, 
                                          ageMin =:ageMin

@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.publichealthworker SET personID =:personID, hourlyRate =:hourlyRate, jobType =:jobType, SSN = :SSN 
+    $statement = $conn->prepare("UPDATE publichealthworker SET personID =:personID, hourlyRate =:hourlyRate, jobType =:jobType, SSN = :SSN 
                                          WHERE employeeID = :employeeID AND facilityID = :facilityID");
 
     $statement->bindParam(":facilityID", $_POST["facilityID"]);

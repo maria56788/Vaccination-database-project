@@ -1,7 +1,7 @@
 <?php require_once "../database.php";
 
 try {
-   $statement = $conn->prepare("UPDATE cnc353_2.approvedVaccines SET exist = 0 WHERE vaccineType = :vaccineType");
+   $statement = $conn->prepare("UPDATE approvedVaccines SET exist = 0 WHERE vaccineType = :vaccineType");
 
    $statement->bindParam(":vaccineType", $_GET["vaccineType"]);
 

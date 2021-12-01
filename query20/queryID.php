@@ -5,17 +5,19 @@ try {
         WHERE pID = :personID AND person.exist = 1');
     $persons->bindParam(":personID", $_POST["personID"]);
     $persons->execute();
-    if ($persons->fetchColumn() != 1){
+    if ($persons->rowCount() != 1){
         throw new PDOException();
     }
     $person = $persons->fetch();
 
     $bookings = $conn->prepare('SELECT booking.personID, booking.dayBooked, timeslot.startTime, vaccinationfacility.fName , vaccinationfacility.address, vaccinationfacility.city, vaccinationfacility.province, vaccinationfacility.postalCode
-FROM ((booking
+FROM (((booking
+INNER JOIN person p on booking.personID = p.pID)
 INNER JOIN timeslot on booking.timeID = timeslot.tID)
 INNER JOIN vaccinationfacility on booking.facilityID = vaccinationfacility.fID)
 WHERE booking.personID = :personID
-AND vaccinationfacility.exist = 1');
+AND vaccinationfacility.exist = 1
+AND p.exist = 1');
     $bookings->bindParam(":personID", $_POST["personID"]);
     $bookings->execute();
 
@@ -36,7 +38,9 @@ ORDER BY doseNumber asc');
 
     $infections = $conn->prepare("SELECT infection.infectedDate
 FROM infection
+INNER JOIN person p on infection.pID = p.pID 
 WHERE infection.pID = :personID
+AND p.exist = 1
 AND infection.exist = 1");
     $infections->bindParam(":personID", $_POST["personID"]);
     $infections->execute();

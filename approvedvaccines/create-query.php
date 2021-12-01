@@ -2,7 +2,7 @@
 require_once '../database.php';
 try {
 
-    $approvedvaccines = $conn->prepare("INSERT INTO cnc353_2.approvedvaccines (vaccineType, dateOfApproval, vDesc, vStatus, suspendedDate)
+    $approvedvaccines = $conn->prepare("INSERT INTO approvedvaccines (vaccineType, dateOfApproval, vDesc, vStatus, suspendedDate)
     VALUES (:vaccineType, :dateOfApproval, :vDesc, :vStatus, :suspendedDate;");
 
     $approvedvaccines->bindParam(":vaccineType",$_POST["vaccineType"]);

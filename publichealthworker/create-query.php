@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $publichealthworker = $conn->prepare("INSERT INTO cnc353_2.publichealthworker (facilityID, personID, employeeID, hourlyRate, jobType, SSN)
+    $publichealthworker = $conn->prepare("INSERT INTO publichealthworker (facilityID, personID, employeeID, hourlyRate, jobType, SSN)
     VALUES (:facilityID, :personID, :employeeID, :hourlyRate, :jobType, :SSN)");
 
     $publichealthworker->bindParam(":facilityID",$_POST["facilityID"]);

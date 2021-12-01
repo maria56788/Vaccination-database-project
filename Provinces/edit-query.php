@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.province SET ageGroupID = :ageGroupID WHERE province = :province");
+    $statement = $conn->prepare("UPDATE province SET ageGroupID = :ageGroupID WHERE province = :province");
 
     $statement->bindParam(":province", $_POST["province"]);
 

@@ -3,7 +3,7 @@ if (!isset($_GET["province"])){
     header("Location: index.php");
 }
 
-$statement = $conn->prepare("SELECT * FROM cnc353_2.province WHERE province = :province");
+$statement = $conn->prepare("SELECT * FROM province WHERE province = :province");
 
 $statement->bindParam(":province", $_GET["province"]);
 

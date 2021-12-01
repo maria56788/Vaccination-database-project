@@ -1,7 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT * FROM cnc353_2.groupage AS groupage WHERE exist = 1');
+    $statement = $conn->prepare('SELECT * FROM groupage AS groupage WHERE exist = 1');
     $statement->execute();
 }
 ?>

@@ -3,7 +3,7 @@
 require_once "../database.php";
 
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.publichealthworker SET exist = 0 WHERE cnc353_2.publichealthworker.facilityID = :facilityID AND cnc353_2.publichealthworker.employeeID");
+    $statement = $conn->prepare("UPDATE publichealthworker SET exist = 0 WHERE publichealthworker.facilityID = :facilityID AND publichealthworker.employeeID");
 
     $statement->bindParam(":facilityID", $_GET["facilityID"]);
 

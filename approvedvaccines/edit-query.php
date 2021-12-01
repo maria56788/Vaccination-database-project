@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.approvedvaccines
+    $statement = $conn->prepare("UPDATE approvedvaccines
                                      SET  
                                          dateOfApproval = :dateOfApproval, 
                                          vDesc =:vDesc, 

@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("INSERT INTO cnc353_2.province (province, AgeGroupID) VALUES (:province, :ageGroupID)");
+    $statement = $conn->prepare("INSERT INTO province (province, AgeGroupID) VALUES (:province, :ageGroupID)");
 
     $statement->bindParam(":province", $_POST["province"]);
 

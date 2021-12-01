@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("INSERT INTO cnc353_2.infection_type (infID, infectionName) VALUES (:infID, :infectionName)");
+    $statement = $conn->prepare("INSERT INTO infection_type (infID, infectionName) VALUES (:infID, :infectionName)");
 
     $statement->bindParam(":infID", $_POST["infID"]);
 

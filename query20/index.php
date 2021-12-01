@@ -27,7 +27,7 @@ session_start();
             </div>
         </div>
     </form>
-    <form action="queryID.php" class="col s12" method="post">
+    <form action="queryName.php" class="col s12" method="post">
         <div class="row">
             <div class="input-field col s4">
                 <label for="firstName">First Name</label>
@@ -49,5 +49,7 @@ session_start();
         </div>
     </form>
 </div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

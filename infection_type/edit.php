@@ -3,7 +3,7 @@ if (!isset($_GET["infID"])){
     header("Location: index.php");
 }
 
-$statement = $conn->prepare("SELECT * FROM cnc353_2.infection_type WHERE infID = :infID");
+$statement = $conn->prepare("SELECT * FROM infection_type WHERE infID = :infID");
 
 $statement->bindParam(":infID", $_GET["infID"]);
 
