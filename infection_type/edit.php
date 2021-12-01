@@ -1,15 +1,15 @@
 <?php require_once '../database.php';
-if (!isset($_GET["province"])){
+if (!isset($_GET["infID"])){
     header("Location: index.php");
 }
 
-$statement = $conn->prepare("SELECT * FROM cnc353_2.province WHERE province = :province");
+$statement = $conn->prepare("SELECT * FROM cnc353_2.infection_type WHERE infID = :infID");
 
-$statement->bindParam(":province", $_GET["province"]);
+$statement->bindParam(":infID", $_GET["infID"]);
 
 $statement->execute();
 
-$province = $statement->fetch(PDO::FETCH_ASSOC);
+$infectionType = $statement->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -24,11 +24,11 @@ $province = $statement->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 <form action="./edit-query.php" method="post">
-    <label for="province"></label>province<br>
-    <input type="text" name="province" id="province" value="<?= $province["province"] ?>" readonly><br>
+    <label for="infID"></label>Infection ID<br>
+    <input type="number" name="infID" id="infID" value="<?= $infectionType["infID"] ?>" readonly><br>
 
-    <label for="ageGroupID"></label>AgeGroupID<br>
-    <input type="number" name="ageGroupID" id="ageGroupID" value="<?= $province["ageGroupID"] ?>"><br>
+    <label for="infectionName"></label>Infection Name<br>
+    <input type="text" name="infectionName" id="infectionName" value="<?= $infectionType["infectionName"] ?>"><br>
 
     <button type="submit">Update</button>
 

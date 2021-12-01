@@ -19,19 +19,21 @@ $publichealthworker = $statement->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Edit Publichealthworker</title>
 </head>
 <body>
     <form action="./edit-query.php" method="post">
-        <label for="facilityID"></label>facilityID<br>
-        <input type="number" name="facilityID" id="facilityID" value="<?= $publichealthworker["facilityID"]?>"><br>
-        
-        <label for="personID"></label>personID<br>
-        <input type="number" name="personID" id="personID" value="<?= $publichealthworker["personID"]?>"><br>
+        <label for="facilityID">facilityID</label><br>
+        <input type="number" name="facilityID" id="facilityID" value="<?= $publichealthworker["facilityID"]?>" readonly><br>
 
         <label for="employeeID"></label>employeeID<br>
-        <input type="number" name="employeeID" id="employeeID" value="<?= $publichealthworker["employeeID"]?>"><br>
-        
+        <input type="number" name="employeeID" id="employeeID" value="<?= $publichealthworker["employeeID"]?>" readonly><br>
+
+        <label for="personID"></label>personID<br>
+        <input type="number" name="personID" id="personID" value="<?= $publichealthworker["personID"]?>" readonly><br>
+
         <label for="hourlyRate"></label>hourlyRate<br>
         <input type="number" name="hourlyRate" id="hourlyRate" value="<?= $publichealthworker["hourlyRate"]?>"><br>
 
