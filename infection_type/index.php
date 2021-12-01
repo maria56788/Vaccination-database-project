@@ -1,7 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT * FROM cnc353_2.infection_type ');
+    $statement = $conn->prepare('SELECT * FROM cnc353_2.infection_type WHERE exist=1');
     $statement->execute();
 }
 ?>

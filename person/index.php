@@ -1,10 +1,10 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT pID, firstName, middleName, lastName, phone, citizenship, postalCode, email, city, address, DoB, province, groupAgeID, person_with_mcn.MCExpDate, person_with_mcn.MCIssueDate, person_with_mcn.MedicalCardNumber, person_with_passport.passportNumber  FROM (cnc353_2.person
+    $statement = $conn->query('SELECT pID, firstName, middleName, lastName, phone, citizenship, postalCode, email, city, address, DoB, province, groupAgeID, person_with_mcn.MCExpDate, person_with_mcn.MCIssueDate, person_with_mcn.MedicalCardNumber, person_with_passport.passportNumber  FROM (cnc353_2.person
         Left JOIN cnc353_2.person_with_mcn ON person.pID = person_with_mcn.personID)
-        Left JOIN cnc353_2.person_with_passport ON person.pID = person_with_passport.personID;');
-    $statement->execute();
+        Left JOIN cnc353_2.person_with_passport ON person.pID = person_with_passport.personID
+        WHERE person.exist = 1;');
 }
 ?>
 <!DOCTYPE html>

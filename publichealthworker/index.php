@@ -1,8 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-$statement = $conn->prepare('SELECT * FROM cnc353_2.publichealthworker AS PublicHealthWorker');
-$statement->execute();
+$statement = $conn->query('SELECT * FROM cnc353_2.publichealthworker AS PublicHealthWorker WHERE exist = 1');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +12,7 @@ $statement->execute();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Document</title>
+    <title>List of Persons</title>
 </head>
 <body>
 
