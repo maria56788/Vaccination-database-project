@@ -14,7 +14,7 @@
         <input type="text" name="vaccineType" id="vaccineType"><br>
         
         <label for="dateOfApproval"></label>dateOfApproval<br>
-        <input type="number" name="dateOfApproval" id="dateOfApproval"><br>
+        <input type="date" name="dateOfApproval" id="dateOfApproval"><br>
 
         <label for="vDesc"></label>vDesc<br>
         <input type="text" name="vDesc" id="vDesc"><br>
@@ -23,8 +23,9 @@
         <input type="text" name="vStatus" id="vStatus"><br>
 
         <label for="suspendedDate"></label>suspendedDate<br>
-        <input type="text" name="suspendedDate" id="suspendedDate"><br>
-        
+        <input type="date" name="suspendedDate" id="suspendedDate"><br>
+
+        <button>Submit</button>
        
     </form>
 <?php
