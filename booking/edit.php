@@ -34,10 +34,10 @@ $booking = $statement->fetch(PDO::FETCH_ASSOC);
         <input type="number" name="personID" id="personID" value="<?= $booking["personID"]?>" readonly><br>
 
         <label for="timeID"></label>timeID<br>
-        <input type="text" name="timeID" id="timeID" value="<?= $booking["timeID"]?>"><br>
+        <input type="number" name="timeID" id="timeID" value="<?= $booking["timeID"]?>"><br>
         
         <label for="dayBooked"></label>dayBooked<br>
-        <input type="number" name="dayBooked" id="dayBooked" value="<?= $booking["dayBooked"]?>"><br>
+        <input type="date" name="dayBooked" id="dayBooked" value="<?= $booking["dayBooked"]?>"><br>
 
         
 

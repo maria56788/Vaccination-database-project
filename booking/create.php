@@ -25,7 +25,7 @@
         <input type="number" name="timeID" id="timeID"><br>
 
         <label for="dayBooked"></label>dayBooked<br>
-        <input type="text" name="dayBooked" id="dayBooked"><br>
+        <input type="date" name="dayBooked" id="dayBooked"><br>
 
         <button type="submit">Create</button>
 
