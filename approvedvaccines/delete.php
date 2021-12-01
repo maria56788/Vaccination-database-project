@@ -1,3 +1,14 @@
-<?php
+<?php require_once "../database.php";
 
-// :TODO Delete page for vaccine List
+try {
+   $statement = $conn->prepare("UPDATE cnc353_2.approvedVaccines SET exist = 0 WHERE vaccineType = :vaccineType");
+
+   $statement->bindParam(":vaccineType", $_GET["vaccineType"]);
+
+   $statement->execute();
+
+    header("Location: index.php ");
+} catch (PDOException $e) {
+    $_SESSION['errorMSG'] = 'Generic Error Message';
+    header("Location: index.php");
+}
