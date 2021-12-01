@@ -27,6 +27,7 @@ if ($mcnCheck->rowCount() != 0) {
     $mcn = false;
 }
 
+$conn = null;
 
 $person = $statement->fetch(PDO::FETCH_ASSOC);
 

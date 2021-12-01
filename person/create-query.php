@@ -57,6 +57,7 @@ try {
         $statement->execute();
     }
     header("Location: index.php ");
+    $conn = null;
 } catch (PDOException $e) {
     $_SESSION['errorMSG'] = 'Generic Error Message';
     header("Location: create.php");

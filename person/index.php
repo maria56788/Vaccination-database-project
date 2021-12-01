@@ -5,6 +5,7 @@ if (isset($conn)) {
         Left JOIN person_with_mcn ON person.pID = person_with_mcn.personID)
         Left JOIN person_with_passport ON person.pID = person_with_passport.personID
         WHERE person.exist = 1;');
+    $conn = null;
 }
 ?>
 <!DOCTYPE html>
