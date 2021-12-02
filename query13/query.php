@@ -67,17 +67,8 @@ try {
         
 
     <?php } ?>
-    <p>Appointments</p>
-    <?php foreach ($persons
-
-                   as $person) { ?>
-        <div class="row">
-            <div class="col s6">
-                <p>Name: <?= $person["firstName"]." ".$person["middleName"]." ".$person["lastName"]?></p>
-                <p>At: <?= $person["startTime"]?></p>
-            </div>
-        </div>
-    <?php } ?>
+   
+    <?php  ?>
 </div>
 </body>
 </html>
