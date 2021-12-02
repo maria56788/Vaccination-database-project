@@ -3,9 +3,9 @@
 require_once "../database.php";
 
 try {
-    $statement = $conn->prepare("UPDATE province SET exist = 0 WHERE cnc353_2.province.province = :province");
+    $statement = $conn->prepare("UPDATE infection_type SET exist = 0 WHERE infID = :infID");
 
-    $statement->bindParam(":province", $_GET["province"]);
+    $statement->bindParam(":infID", $_GET["infID"]);
 
     $statement->execute();
 

@@ -1,8 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-$statement = $conn->prepare('SELECT * FROM cnc353_2.publichealthworker AS PublicHealthWorker');
-$statement->execute();
+$statement = $conn->query('SELECT * FROM publichealthworker AS PublicHealthWorker WHERE exist = 1');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +12,7 @@ $statement->execute();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Document</title>
+    <title>List of Persons</title>
 </head>
 <body>
 
@@ -28,7 +27,9 @@ $statement->execute();
             <td>employeeID</td>
             <td>hourlyRate</td>
             <td>jobType</td>
+            <td>SSN</td>
             <td>Actions</td>
+
         </tr>
     </thead>
     <tbody>
@@ -39,10 +40,11 @@ $statement->execute();
                 <td><?= $row["employeeID"]?></td>
                 <td><?= $row["hourlyRate"]?></td>
                 <td><?= $row["jobType"]?></td>
+                <td><?= $row["SSN"]?></td>
                 
                 <td>
-                    <a href="./delete.php?employeeID=<?= $row["employeeID"]?>,?facilityID=<?= $row["facilityID"]?>">Delete</a>
-                    <a href="./edit.php?employeeID=<?= $row["employeeID"]?>,?facilityID=<?= $row["facilityID"]?>">Edit</a>
+                    <a href="./delete.php?employeeID=<?= $row["employeeID"]?>&facilityID=<?= $row["facilityID"]?>">Delete</a>
+                    <a href="./edit.php?employeeID=<?= $row["employeeID"]?>&facilityID=<?= $row["facilityID"]?>">Edit</a>
                 </td>
                 
                 </tr>

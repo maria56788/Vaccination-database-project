@@ -1,40 +1,18 @@
 <?php require_once '../database.php';
-
-$statement = $conn->prepare("SELECT*cnc353_2.groupage AS groupage 
-WHERE groupage.gID = :gID);
+if (!isset($_GET["gID"])){
+    header("Location: index.php");
+}
+$statement = $conn->prepare("SELECT * FROM groupage AS groupage 
+WHERE groupage.gID = :gID");
 
 $statement->bindParam(":gID",$_GET["gID"]);
 
 $statement->execute();
 
-$groupage = $statement->fetch(PDO::FETCH_ASSOC);
+$groupAge = $statement->fetch(PDO::FETCH_ASSOC);
 
-if(isset($_POST['gID'])
-        &&isset($_POST['ageMax'])
-        &&isset($_POST['ageMin'])){
-        $statement = $conn->prepare("UPDATE cnc353_2.groupage
-                                     SET gID =:gID, 
-                                         ageMax = :ageMax, 
-                                         ageMin =:ageMin, ");
 
-    $statement->bindParam(":gID",$_POST["gID"]);
-    
-    $statement->bindParam(":ageMax",$_POST["ageMax"]);
-    
-    $statement->bindParam(":ageMin",$_POST["ageMin"]);
-    
-    $statement->execute();
 
-    if($statement->execute())
-        header("Location: .");
-    
-/*
-in the example he gave, used book id to keep track of which book is updated.
-problem is that for groupage the key is made of ageMin and gID.
-
-throughout the code he uses that book id. Should we use groupage ID?
-*/
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,15 +23,15 @@ throughout the code he uses that book id. Should we use groupage ID?
     <title>Edit groupage</title>
 </head>
 <body>
-    <form action="./edit.php" method="post">
+    <form action="./edit-query.php" method="post">
         <label for="gID"></label>gID<br>
-        <input type="number" name="gID" id="gID" value="<?= $groupage["gID"]?>"><br>
+        <input type="number" name="gID" id="gID" value="<?= $groupAge["gID"]?>"><br>
         
         <label for="ageMax"></label>ageMax<br>
-        <input type="number" name="ageMax" id="ageMax"value="<?= $groupage["ageMax"]?>"><br>
+        <input type="number" name="ageMax" id="ageMax" value="<?= $groupAge["ageMax"]?>"><br>
 
         <label for="ageMin"></label>ageMin<br>
-        <input type="number" name="ageMin" id="ageMin"value="<?= $groupage["ageMin"]?>"><br>
+        <input type="number" name="ageMin" id="ageMin" value="<?= $groupAge["ageMin"]?>"><br>
 
         <button type="submit">Update</button>
        

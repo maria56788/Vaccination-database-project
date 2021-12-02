@@ -1,7 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT * FROM province WHERE exist=1');
+    $statement = $conn->prepare('SELECT * FROM infection_type WHERE exist=1');
     $statement->execute();
 }
 ?>
@@ -31,11 +31,11 @@ if (isset($conn)) {
     <?php if (isset($statement)) {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) { ?>
             <tr>
-                <td><?= $row["province"] ?></td>
-                <td><?= $row["ageGroupID"] ?></td>
+                <td><?= $row["infID"] ?></td>
+                <td><?= $row["infectionName"] ?></td>
                 <td>
-                    <a href="./delete.php?province=<?= $row["province"] ?>">Delete</a>
-                    <a href="./edit.php?province=<?= $row["province"] ?>">Edit</a>
+                    <a href="./delete.php?infID=<?= $row["infID"] ?>">Delete</a>
+                    <a href="./edit.php?infID=<?= $row["infID"] ?>">Edit</a>
                 </td>
 
             </tr>

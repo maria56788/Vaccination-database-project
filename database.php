@@ -17,8 +17,9 @@ $dsn = "mysql:host=$host;dbname=$db;charset=$charset;port=$port";
 
 try {
     $conn = new \PDO($dsn, $username, $password, $options);
+    $conn->query("USE {$db}");
 } catch (PDOException $e) {
-    die("Could not connect to lol". $e->getMessage());
+    die("Could not connect.". $e->getMessage());
 }
 
 ?>

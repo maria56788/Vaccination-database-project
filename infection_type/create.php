@@ -7,15 +7,15 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a provinces</title>
+    <title>Create an infection Type</title>
 </head>
 <body>
 <form action="./create-query.php" method="post">
-    <label for="province"></label>province<br>
-    <input type="text" name="province" id="province"><br>
+    <label for="infID">Infection ID</label><br>
+    <input type="number" name="infID" id="infID"><br>
 
-    <label for="ageGroupID"></label>AgeGroupID<br>
-    <input type="number" name="ageGroupID" id="ageGroupID"><br>
+    <label for="infectionName">Infection Name</label><br>
+    <input type="text" name="infectionName" id="infectionName"><br>
 
     <button type="submit">Create</button>
     <?php

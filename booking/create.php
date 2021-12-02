@@ -9,27 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Create a publichealthworker</title>
+    <title>Create a booking</title>
 </head>
 <body>
     <form action="./create-query.php" method="post">
         <label for="facilityID"></label>facilityID<br>
         <input type="number" name="facilityID" id="facilityID"><br>
 
-        <label for="employeeID"></label>employeeID<br>
-        <input type="number" name="employeeID" id="employeeID"><br>
+        
 
         <label for="personID"></label>personID<br>
         <input type="number" name="personID" id="personID"><br>
 
-        <label for="hourlyRate"></label>hourlyRate<br>
-        <input type="number" name="hourlyRate" id="hourlyRate"><br>
+        <label for="timeID"></label>timeID<br>
+        <input type="number" name="timeID" id="timeID"><br>
 
-        <label for="jobType"></label>jobType<br>
-        <input type="text" name="jobType" id="jobType"><br>
-
-        <label for="SSN">SSN</label><br>
-        <input type="text" name="SSN" id="SSN"><br>
+        <label for="dayBooked"></label>dayBooked<br>
+        <input type="date" name="dayBooked" id="dayBooked"><br>
 
         <button type="submit">Create</button>
 

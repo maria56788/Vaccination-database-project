@@ -1,8 +1,11 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT * FROM cnc353_2.person AS person');
-    $statement->execute();
+    $statement = $conn->query('SELECT pID, firstName, middleName, lastName, phone, citizenship, postalCode, email, city, address, DoB, province, groupAgeID, person_with_mcn.MCExpDate, person_with_mcn.MCIssueDate, person_with_mcn.MedicalCardNumber, person_with_passport.passportNumber  FROM (cnc353_2.person
+        Left JOIN person_with_mcn ON person.pID = person_with_mcn.personID)
+        Left JOIN person_with_passport ON person.pID = person_with_passport.personID
+        WHERE person.exist = 1;');
+    $conn = null;
 }
 ?>
 <!DOCTYPE html>
@@ -18,8 +21,10 @@ if (isset($conn)) {
 <body>
 
 <table>
-    <h1>List of person</h1>
-    <a href="./create.php">Add a new person</a>
+    <h1>List of persons</h1>
+    <h2>Add a new person <a href="./create.php?mcn=1">with a Medical Card Number</a>/<a href="./create.php?mcn=0">with a Passport Number</a></h2>
+
+
     <thead>
     <tr>
         <td>pID</td>
@@ -35,7 +40,10 @@ if (isset($conn)) {
         <td>DoB</td>
         <td>province</td>
         <td>groupAgeID</td>
-
+        <td>MCEXPDate</td>
+        <td>MCIssueDate</td>
+        <td>MedicalCardNumber</td>
+        <td>passportNumber</td>
     </tr>
     </thead>
     <tbody>
@@ -54,7 +62,13 @@ if (isset($conn)) {
             <td><?= $row["DoB"] ?></td>
             <td><?= $row["province"] ?></td>
             <td><?= $row["groupAgeID"] ?></td>
+            <td><?= $row["MCExpDate"] ?></td>
+            <td><?= $row["MCIssueDate"] ?></td>
+            <td><?= $row["MedicalCardNumber"] ?></td>
+            <td><?= $row["passportNumber"] ?></td>
 
+            <td></td>
+            <td></td>
             <td>
                 <a href="./delete.php?pID=<?= $row["pID"] ?>">Delete</a>
                 <a href="./edit.php?pID=<?= $row["pID"] ?>">Edit</a>
