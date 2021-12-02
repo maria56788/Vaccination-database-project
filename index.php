@@ -25,6 +25,8 @@
     /
     <a href="./publichealthworker/">Public Health Worker</a>
     <br>
+    <a href="./query13/">Query 13</a>
+    /
     <a href="./query15/">Query 15</a>
     /
     <a href="./query18/">Query 18</a>
