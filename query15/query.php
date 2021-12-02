@@ -4,7 +4,7 @@ try {
 
     $facility = $conn->prepare('SELECT ws.workDays, p.opens, p.closes, vaccinationfacility.fName
                                         FROM vaccinationfacility
-                                        INNER  JOIN weekshift ws ON ws.facilityID = vaccinationfacility.fID
+                                        INNER  JOIN weekShift ws ON ws.facilityID = vaccinationfacility.fID
                                         INNER  JOIN patterns p on ws.patternID = p.patternID
                                         WHERE fID = :facilityID');
     $facility->bindParam(":facilityID",$_POST["facilityID"]);
