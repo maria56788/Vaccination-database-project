@@ -25,7 +25,11 @@
     /
     <a href="./publichealthworker/">Public Health Worker</a>
     <br>
+    <a href="./assignment/">Assignment</a>
+    /
     <a href="./query13/">Query 13</a>
+    /
+    <a href="./query13_2/">Query 13_2</a>
     /
     <a href="./query14/">Query 14</a>
     /
