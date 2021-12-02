@@ -4,7 +4,7 @@ $host = 'cnc353.encs.concordia.ca';
 $username = 'cnc353_2';
 $password = 'cloudy56';
 $db = 'cnc353_2';
-$port = "3306";
+$port = "3307";
 $charset = 'utf8mb4';
 
 $options = [
