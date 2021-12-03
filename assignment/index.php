@@ -7,7 +7,11 @@ if (isset($conn)) {
     INNER JOIN history h on publichealthworker.employeeID = h.employeeID AND publichealthworker.facilityID = h.facilityID
     WHERE publichealthworker.exist = 1 
     AND publichealthworker.employeeID = :employeeID
+    AND publichealthworker.facilityID = :facilityID
     AND IF(h.endDate IS NULL,IF(:date > h.startDate,1,0),IF(:date BETWEEN h.startDate AND h.endDate,1,0)) = 1;');
+    $statement->bindParam(":employeeID", $_POST["employeeID"]);
+    $statement->bindParam(":facilityID", $_POST["facilityID"]);
+    $statement->bindParam("date", $_POST["date"]);
     $statement->execute();
 }
 ?>
@@ -26,7 +30,6 @@ if (isset($conn)) {
 
 <table>
     <h1>Schedule of Public HealthWorker</h1>
-    <a href="./create.php">Assign a new shift</a>
     <thead>
     <tr>
         <td>First Name</td>
@@ -45,11 +48,13 @@ if (isset($conn)) {
         <tr>
             <td><?= $row["firstName"] ?></td>
             <td><?= $row["middleName"] ?></td>
-            <td><?= $row["LastNme"] ?></td>
+            <td><?= $row["lastName"] ?></td>
             <td><?= $row["employeeID"] ?></td>
+            <td><?= $row["jobType"] ?></td>
+
             <td><?= $row["startShift"] ?></td>
             <td><?= $row["endShift"] ?></td>
-             <td><?= $row["FacilityID"] ?></td>
+             <td><?= $row["facilityID"] ?></td>
            
             
             <td>

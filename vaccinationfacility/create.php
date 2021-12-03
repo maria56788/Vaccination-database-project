@@ -35,6 +35,15 @@ session_start();
     <label for="province">Province</label><br>
     <input type="text" name="province" id="province"><br>
 
+    <label for="postalCode">Postal Code</label><br>
+    <input type="text" name="postalCode" id="postalCode" ><br>
+
+    <label for="address">Address</label><br>
+    <input type="text" name="address" id="address" ><br>
+
+    <label for="onlyAppoint">Only Appointment</label><br>
+    <input type="number" name="onlyAppoint" id="onlyAppoint" ><br>
+
     <button type="submit">Create</button>
     <?php
     if (isset($_SESSION["errorMSG"])) {

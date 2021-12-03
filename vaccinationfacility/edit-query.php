@@ -1,7 +1,7 @@
 <?php
 require_once '../database.php';
 try {
-    $statement = $conn->prepare("UPDATE cnc353_2.vaccinationfacility SET fName = fName, fType = :fType, phone = :phone, webAddress = :webAdress, capacity = :capacity, city = city, province = :province WHERE fID = :fID");
+    $statement = $conn->prepare("UPDATE vaccinationfacility SET fName = :fName, fType = :fType, phone = :phone, webAddress = :webAdress, capacity = :capacity, city = :city, province = :province, postalCode = :postalCode, address = :address , onlyAppoint = :onlyAppoint WHERE fID = :fID");
 
     $statement->bindParam(":fID", $_POST["fID"]);
 
@@ -18,6 +18,12 @@ try {
     $statement->bindParam(":city", $_POST["city"]);
 
     $statement->bindParam(":province", $_POST["province"]);
+
+    $statement->bindParam(":postalCode", $_POST["postalCode"]);
+
+    $statement->bindParam(":address", $_POST["address"]);
+
+    $statement->bindParam(":onlyAppoint", $_POST["onlyAppoint"]);
 
     $statement->execute();
 

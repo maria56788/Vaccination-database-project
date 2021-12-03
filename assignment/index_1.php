@@ -17,15 +17,19 @@ session_start();
 <div class="row">
     <form action="index.php" class="col s12" method="post">
         <div class="row">
-            <div class="input-field col s5">
+            <div class="input-field col s3">
+                <label for="facilityID">Facility ID</label>
+                <input type="number" name="facilityID">
+            </div>
+            <div class="input-field col s3">
                 <label for="employeeID">Employee ID</label>
                 <input type="number" name="employeeID"><br>
             </div>
-            <div class="input-field col s5">
+            <div class="input-field col s3">
                 <label for="date">Date</label>
                 <input type="date" name="date"><br>
             </div>
-            <div class="input-field col s2">
+            <div class="input-field col s3">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 </button>
             </div>

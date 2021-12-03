@@ -4,13 +4,12 @@ try {
     $persons = $conn->prepare('SELECT pID, firstName, middleName, lastName, DOB From cnc353_2.person
         WHERE firstName = :firstName AND middleName = :middleName AND lastName = :lastName AND person.exist = 1');
     $persons->bindParam(":firstName", $_POST["firstName"]);
-    if (!empty($_POST[":middleName"])) {
+    if (!empty($_POST["middleName"])) {
         $persons->bindParam(":middleName", $_POST["middleName"]);
     }else{
         $null = "NULL";
         $persons->bindParam(":middleName", $null);
     }
-    $persons->bindParam(":middleName", $_POST["middleName"]);
     $persons->bindParam(":lastName", $_POST["lastName"]);
     $persons->execute();
 

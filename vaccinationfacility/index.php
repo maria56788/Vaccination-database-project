@@ -1,7 +1,7 @@
 <?php require_once '../database.php';
 
 if (isset($conn)) {
-    $statement = $conn->prepare('SELECT * FROM cnc353_2.province ');
+    $statement = $conn->prepare('SELECT * FROM cnc353_2.vaccinationfacility WHERE vaccinationfacility.exist = 1');
     $statement->execute();
 }
 ?>
@@ -22,8 +22,17 @@ if (isset($conn)) {
     <a href="./create.php">Add a new Province</a>
     <thead>
     <tr>
-        <td>province</td>
-        <td>AgeGroupID</td>
+        <td>Facility ID</td>
+        <td>Facility Name</td>
+        <td>Facility Type</td>
+        <td>Phone</td>
+        <td>Web Address</td>
+        <td>Capacity</td>
+        <td>City</td>
+        <td>Province</td>
+        <td>Postal Code</td>
+        <td>Address</td>
+        <td>Only Appointment</td>
         <td>Actions</td>
     </tr>
     </thead>
@@ -31,11 +40,21 @@ if (isset($conn)) {
     <?php if (isset($statement)) {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) { ?>
             <tr>
+                <td><?= $row["fID"] ?></td>
+                <td><?= $row["fName"] ?></td>
+                <td><?= $row["fType"] ?></td>
+                <td><?= $row["phone"] ?></td>
+                <td><?= $row["webAddress"] ?></td>
+                <td><?= $row["capacity"] ?></td>
+                <td><?= $row["city"] ?></td>
                 <td><?= $row["province"] ?></td>
-                <td><?= $row["ageGroupID"] ?></td>
+                <td><?= $row["postalCode"] ?></td>
+                <td><?= $row["address"] ?></td>
+                <td><?= $row["onlyAppoint"] ?></td>
+
                 <td>
-                    <a href="./delete.php?province=<?= $row["province"] ?>">Delete</a>
-                    <a href="./edit.php?province=<?= $row["province"] ?>">Edit</a>
+                    <a href="./delete.php?fID=<?= $row["fID"] ?>">Delete</a>
+                    <a href="./edit.php?fID=<?= $row["fID"] ?>">Edit</a>
                 </td>
 
             </tr>

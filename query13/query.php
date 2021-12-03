@@ -3,27 +3,28 @@ require_once "../database.php";
 try {
 
 
-    $facilityInfo = $facility->fetch();
-    $nurses = $conn->prepare("SELECT publichealthworker.employeeID, person.firstName,person.lastName,person.email, publichealthworker.hourlyRate 
-    FROM publichealthworker
-    inner join person on publichealthworker.personID=person.pID
-    where publichealthworker.employeeID NOT IN 
-        (SELECT p.pID
-        FROM publichealthworker
-        INNER JOIN person p on publichealthworker.personID = p.pID
-        INNER JOIN history h on publichealthworker.employeeID = h.employeeID AND publichealthworker.facilityID = h.facilityID
-        WHERE publichealthworker.exist = 1
-        AND publichealthworker.facilityID = :facilityID
-        AND publichealthworker.jobType = 'nurse')
-    AND publichealthworker.jobType = 'nurse';;
+    $nurses = $conn->prepare("SELECT publichealthworker.employeeID, person.firstName,person.lastName,person.email, publichealthworker.hourlyRate, h2.startDate, h2.endDate, publichealthworker.facilityID
+FROM publichealthworker
+         INNER JOIN person on publichealthworker.personID=person.pID
+         INNER JOIN history h2 on publichealthworker.employeeID = h2.employeeID and publichealthworker.facilityID = h2.facilityID
+where publichealthworker.employeeID NOT IN
+      (SELECT publichealthworker.employeeID
+       FROM publichealthworker
+                INNER JOIN person p on publichealthworker.personID = p.pID
+                INNER JOIN history h on publichealthworker.employeeID = h.employeeID AND publichealthworker.facilityID = h.facilityID
+       WHERE publichealthworker.exist = 1
+         AND IF(h.endDate IS NULL,IF(:date > h.startDate,1,0),IF(:date BETWEEN h.startDate AND h.endDate,1,0)) = 1
+         AND publichealthworker.facilityID = :facilityID
+         AND publichealthworker.jobType = 'nurse')
+  AND publichealthworker.jobType = 'nurse'
+  AND publichealthworker.facilityID = :facilityID
 ");
     $nurses->bindParam(":facilityID", $_POST["facilityID"]);
     $nurses->bindParam(":date", $_POST["date"]);
     $nurses->execute();
 
 
-}
- catch (PDOException $e) {
+} catch (PDOException $e) {
     $_SESSION['errorMSG'] = 'Generic Error Message';
     header("Location: index.php");
 }
@@ -40,35 +41,41 @@ try {
     <title>Person Information</title>
 </head>
 <body>
-<div class="Output">
-    <div class="row">
-        <div class="col s6">
-            <p>Health and Social Services</p>
-        </div>
-        <div class="col s6">
-            <p>Proof of Vaccination against COVID-19</p>
-        </div>
-    </div>
-    <hr>
+<table>
+    <h1>Nurses </h1>
+
+    <thead>
+    <tr>
+        <td>firstName</td>
+        <td>lastName</td>
+        <td>email</td>
+        <td>hourlyRate</td>
+
+        <td>startDate</td>
+        <td>endDate</td>
+
+        <td>facilityID</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($nurses as $row) { ?>
+        <tr>
+            <td><?= $row["firstName"] ?></td>
+            <td><?= $row["lastName"] ?></td>
+            <td><?= $row["email"] ?></td>
+            <td><?= $row["hourlyRate"] ?></td>
+
+            <td><?= $row["startDate"] ?></td>
+            <td><?= $row["endDate"] ?></td>
+
+            <td><?= $row["facilityID"] ?></td>
 
 
-    </div>
-    <hr>
-    <p>Nurses:</p>
-    <?php foreach ($nurses
-
-                   as $nurse) { ?>
-        <div class="row">
-            <div class="col s6">
-                <p>Information: <?= $nurse["employeeID"]." ".$nurse["firstName"]." ".$nurse["lastName"]."".$nurse["hourlyWage"]." ".$nurse["lastName"]?></p>
-                
-            </div>
-        </div>
-        
-
+        </tr>
     <?php } ?>
-   
-    <?php  ?>
-</div>
+    </tbody>
+</table>
+<p>Choose the link to go back to the homepage</p>
+<a href="../"> Back to homepage</a>
 </body>
 </html>

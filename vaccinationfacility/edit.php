@@ -1,5 +1,5 @@
 <?php require_once '../database.php';
-if (!isset($_GET["province"])){
+if (!isset($_GET["fID"])){
     header("Location: index.php");
 }
 
@@ -47,6 +47,15 @@ $facility = $statement->fetch(PDO::FETCH_ASSOC);
 
     <label for="province">Province</label><br>
     <input type="text" name="province" id="province" value="<?=$facility["province"]?>"><br>
+
+    <label for="postalCode">Postal Code</label><br>
+    <input type="text" name="postalCode" id="postalCode" value="<?=$facility["postalCode"]?>"><br>
+
+    <label for="address">Address</label><br>
+    <input type="text" name="address" id="address" value="<?=$facility["address"]?>"><br>
+
+    <label for="onlyAppoint">Only Appointment</label><br>
+    <input type="number" name="onlyAppoint" id="onlyAppoint" value="<?=$facility["onlyAppoint"]?>"><br>
 
     <button type="submit">Update</button>
 
